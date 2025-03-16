@@ -23,7 +23,7 @@ public class TowerManager : MonoBehaviour
             randomNumber = Random.Range(0, towerPlatforms.Length);
 
             GameObject t = Instantiate(towerPlatforms[randomNumber], traveller.transform.position, traveller.transform.rotation);
-            traveller.transform.Translate(Vector3.up * 8);
+            traveller.transform.Translate(Vector3.up * 5);
         }
     }
 
