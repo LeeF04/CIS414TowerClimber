@@ -22,9 +22,19 @@ public class PlayerMove : MonoBehaviour
     private IJumpingStrategy jumpingStrategy;
     private bool isGrounded = true;
     private bool doubleJumpAvailable = false;
+
+    //Flipping
     private bool isFlipped = false;
 
-    //Temporary
+    //Triple Jump
+    private bool tripleJumpEnabled = false;
+    private bool tripleJumpAvailable = false;
+    private float tripleJumpCooldown = 3.0f;
+
+    //Hover
+    private float hoverDuration = 0.5f;
+
+    //Audio
     [SerializeField] AudioSource playerAudioSource;
     [SerializeField] AudioClip jumpAudioClip;
     SoundPlayer soundPlayer = new SoundPlayer();
@@ -75,14 +85,49 @@ public class PlayerMove : MonoBehaviour
             {
                 //Jump();
                 jumpingStrategy.DoubleJump();
-                doubleJumpAvailable = false;
-                Debug.Log("Double Jump");
+                if (tripleJumpAvailable)
+                {
+                    tripleJumpAvailable = false;
+                    Debug.Log("Triple Jump");
+                }
+                else
+                {
+                    //doubleJumpAvailable = false;
+                    Debug.Log("Double Jump");
+                    StartCoroutine(resetGravity());
+                }
+                
             }
             else
             {
                 Debug.Log("Failed to Jump");
             }
         }
+
+        if (Input.GetKeyDown("1"))
+        {
+            jumpingStrategy = new Default2Jump();
+            tripleJumpEnabled = false;
+        }
+
+        if (Input.GetKeyDown("2"))
+        {
+            jumpingStrategy = new Teleport2Jump();
+            tripleJumpEnabled = false;
+        }
+
+        if (Input.GetKeyDown("3"))
+        {
+            jumpingStrategy = new Triple2Jump();
+            tripleJumpEnabled = true;
+        }
+
+        if (Input.GetKeyDown("4"))
+        {
+            jumpingStrategy = new Hover2Jump();
+            tripleJumpEnabled = false;
+        }
+
     }
 
 
@@ -95,6 +140,13 @@ public class PlayerMove : MonoBehaviour
     {
         playerRb.velocity = new Vector2(playerRb.velocity.x, jumpSpeed);
         soundPlayer.PlaySoundWithVariance(playerAudioSource, jumpAudioClip);
+    }
+
+    IEnumerator resetGravity()
+    {
+        yield return new WaitForSeconds(hoverDuration);
+
+        playerRb.gravityScale = 1.5f;
     }
 
     private void FlipSprite(bool isFlipped)
@@ -110,6 +162,10 @@ public class PlayerMove : MonoBehaviour
         {
             isGrounded = true;
             doubleJumpAvailable = true;
+            if (tripleJumpEnabled)
+            {
+                tripleJumpAvailable = true;
+            }
             Debug.Log("Enter Platform");
         }
     }
@@ -120,7 +176,6 @@ public class PlayerMove : MonoBehaviour
         {
             isGrounded = false;
             Debug.Log("Exit Platform");
-
         }
     }
 }
