@@ -29,7 +29,7 @@ public class PlayerMove : MonoBehaviour
     //Triple Jump
     private bool tripleJumpEnabled = false;
     private bool tripleJumpAvailable = false;
-    private float tripleJumpCooldown = 3.0f;
+    //private float tripleJumpCooldown = 3.0f;
 
     //Hover
     private float hoverDuration = 0.5f;
@@ -84,7 +84,7 @@ public class PlayerMove : MonoBehaviour
             else if (doubleJumpAvailable) 
             {
                 //Jump();
-                jumpingStrategy.DoubleJump();
+                jumpingStrategy.SecondJump(playerRb);
                 if (tripleJumpAvailable)
                 {
                     tripleJumpAvailable = false;
@@ -92,7 +92,7 @@ public class PlayerMove : MonoBehaviour
                 }
                 else
                 {
-                    //doubleJumpAvailable = false;
+                    doubleJumpAvailable = false;
                     Debug.Log("Double Jump");
                     StartCoroutine(resetGravity());
                 }
