@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &29868641
 Transform:
   m_ObjectHideFlags: 0
@@ -166,7 +166,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 29868640}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 085c43695b0173d4c80e59bb0bb41c20, type: 3}
   m_Name: 
@@ -462,10 +462,10 @@ GameObject:
   - component: {fileID: 438430534}
   - component: {fileID: 438430533}
   - component: {fileID: 438430535}
-  - component: {fileID: 438430536}
   - component: {fileID: 438430537}
-  - component: {fileID: 438430538}
   - component: {fileID: 438430539}
+  - component: {fileID: 438430538}
+  - component: {fileID: 438430543}
   m_Layer: 0
   m_Name: CatPlayer
   m_TagString: Player
@@ -567,22 +567,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &438430536
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 438430532}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 60c4916725f3e6d4caeac911c55ed169, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 5
-  jumpSpeed: 10
-  playerAudioSource: {fileID: 438430539}
-  jumpAudioClip: {fileID: 8300000, guid: 9ba6935c904e11b4cac7e4268933f09a, type: 3}
 --- !u!70 &438430537
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -726,6 +710,28 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &438430543
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438430532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc48a52228c816d4dac86dff1ca7000d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  defaultPlayerGravityScale: 1.5
+  GroundedJumpAudioClip: {fileID: 8300000, guid: 9ba6935c904e11b4cac7e4268933f09a, type: 3}
+  GroundedJumpSpeed: 10
+  DoubleJumpAudioClip: {fileID: 8300000, guid: 9ba6935c904e11b4cac7e4268933f09a, type: 3}
+  TeleportJumpAudioClip: {fileID: 8300000, guid: 3190f5940754ee74c91ac7020a68bba9, type: 3}
+  TripleJumpAudioClip: {fileID: 8300000, guid: 5efa41faebe12634db9ffad659cb294c, type: 3}
+  HoverJumpAudioClip: {fileID: 8300000, guid: 64f1672153d6ea74d9801a1c7c84accd, type: 3}
+  hoverDuration: 0.5
+  playerAudioSource: {fileID: 438430539}
 --- !u!1001 &688278706
 PrefabInstance:
   m_ObjectHideFlags: 0

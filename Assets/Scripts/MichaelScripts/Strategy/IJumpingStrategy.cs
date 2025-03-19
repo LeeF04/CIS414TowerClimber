@@ -6,5 +6,6 @@ using UnityEngine;
 
 public interface IJumpingStrategy
 {
-    void DoubleJump();
+    void SecondJump(Rigidbody2D playerRB);
+    int SecondJumpMaximum();
 }
