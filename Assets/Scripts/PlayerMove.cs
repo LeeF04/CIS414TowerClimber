@@ -12,6 +12,7 @@ using UnityEngine;
 public class PlayerMove : MonoBehaviour
 {
     // Variables 
+    // Lee Fischer
     [SerializeField] private float moveSpeed = 5.0f;
     [SerializeField] private float jumpSpeed = 10.0f;
     private float direction = 0.0f;
