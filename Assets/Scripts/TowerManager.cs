@@ -10,15 +10,18 @@ public class TowerManager : MonoBehaviour
     // Variables
     [SerializeField] private GameObject[] towerPlatforms;
 
+    //Edit by Michael, used to calculate maximum water level
+    public int towerHeight = 50; //In platforms
+
     private GameObject traveller;
     
-    void Start()
+    void Awake()
     {
         traveller = new GameObject("travel");
 
         int randomNumber = 0;
 
-        for(int i = 0; i < 50; i++)
+        for(int i = 0; i < towerHeight; i++)
         {
             randomNumber = Random.Range(0, towerPlatforms.Length);
 

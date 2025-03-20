@@ -174,6 +174,11 @@ public class PlayerMove2 : MonoBehaviour
             jumpingStrategy = new Hover2Jump();
             AirJumpType = 4;
         }
+
+        if (Input.GetKeyDown("`"))
+        {
+            playerAnimator.enabled = !playerAnimator.enabled;
+        }
         #endregion
 
         #region Passing to Animator
