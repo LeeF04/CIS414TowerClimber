@@ -24,5 +24,9 @@ public class Triple2Jump : IJumpingStrategy
     {
         return 2;
     }
+    public int AirJumpType()
+    {
+        return 3;
+    }
 }
 

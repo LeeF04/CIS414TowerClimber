@@ -23,7 +23,7 @@ public class PlayerMove2 : MonoBehaviour
     // Jumping
     private IJumpingStrategy jumpingStrategy;
     private bool isGrounded = true;
-    private int AirJumpType = 1;
+    //private int AirJumpType = 1;
     private int AirJumpCount = 0;
 
     // Grounded Jump
@@ -49,6 +49,9 @@ public class PlayerMove2 : MonoBehaviour
 
     //Animation
     private Animator playerAnimator;
+
+    // Keys
+    private KeyCode KeyFromKeyPressed = 0;
 
     void Start()
     {
@@ -97,7 +100,7 @@ public class PlayerMove2 : MonoBehaviour
             }
             else
             {
-                if (AirJumpType != 0)
+                if (jumpingStrategy.AirJumpType() != 0)
                 { 
                     if (AirJumpCount < jumpingStrategy.SecondJumpMaximum())
                     {
@@ -105,7 +108,7 @@ public class PlayerMove2 : MonoBehaviour
                         Debug.Log("Double Jump");
                         AirJumpCount++;
 
-                        switch (AirJumpType)
+                        switch (jumpingStrategy.AirJumpType())
                         {
                             case 1:
                                 soundPlayer.PlaySoundWithVariance(playerAudioSource, DoubleJumpAudioClip);
@@ -131,7 +134,7 @@ public class PlayerMove2 : MonoBehaviour
                         }
                     }
                 }
-                else if (AirJumpType == 0)
+                else if (jumpingStrategy.AirJumpType() == 0)
                 {
                     Debug.Log("No AirJumpType Selected");
                 }
@@ -145,6 +148,18 @@ public class PlayerMove2 : MonoBehaviour
         #endregion
 
         #region GetKetDown
+
+        KeyCode[] keysToCheck = { KeyCode.Alpha0, KeyCode.Alpha1, KeyCode.Alpha2, KeyCode.Alpha3, KeyCode.Alpha4 };
+
+        if (KeyPressed(keysToCheck))
+        {
+            Debug.Log("Specified key has been pressed.");
+            IJumpingStrategy newStrategy = JumpingStrategyFactory.GetStrategy(KeyFromKeyPressed);
+            ChangeMovementStrategy(newStrategy);
+        }
+
+
+        /*
         if (Input.GetKeyDown("0"))
         {
             jumpingStrategy = new Default2Jump();
@@ -174,6 +189,7 @@ public class PlayerMove2 : MonoBehaviour
             jumpingStrategy = new Hover2Jump();
             AirJumpType = 4;
         }
+        */
 
         if (Input.GetKeyDown("`"))
         {
@@ -187,6 +203,25 @@ public class PlayerMove2 : MonoBehaviour
         playerAnimator.SetBool("isGrounded", isGrounded);
 
         #endregion
+    }
+
+    bool KeyPressed(KeyCode[] keys)
+    {
+        foreach (KeyCode key in keys)
+        {
+            if (Input.GetKeyDown(key))
+            {
+                Debug.Log("Key Pressed = " + key);
+                KeyFromKeyPressed = key;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public void ChangeMovementStrategy(IJumpingStrategy newStrategy)
+    {
+        this.jumpingStrategy = newStrategy;
     }
 
     private void GroundedJump()

@@ -22,4 +22,8 @@ public class Teleport2Jump : IJumpingStrategy
     {
         return 1;
     }
+    public int AirJumpType()
+    {
+        return 2;
+    }
 }

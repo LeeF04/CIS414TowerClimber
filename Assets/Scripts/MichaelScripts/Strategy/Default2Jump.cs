@@ -38,4 +38,9 @@ public class Default2Jump : IJumpingStrategy
         return 1;
     }
 
+    public int AirJumpType()
+    {
+        return 1;
+    }
+
 }

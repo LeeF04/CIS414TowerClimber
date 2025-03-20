@@ -8,4 +8,6 @@ public interface IJumpingStrategy
 {
     void SecondJump(Rigidbody2D playerRB);
     int SecondJumpMaximum();
+
+    int AirJumpType();
 }
