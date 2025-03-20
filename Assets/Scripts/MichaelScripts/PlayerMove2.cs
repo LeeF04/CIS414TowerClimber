@@ -23,7 +23,7 @@ public class PlayerMove2 : MonoBehaviour
     // Jumping
     private IJumpingStrategy jumpingStrategy;
     private bool isGrounded = true;
-    private int AirJumpType = 0;
+    private int AirJumpType = 1;
     private int AirJumpCount = 0;
 
     // Grounded Jump
@@ -47,10 +47,15 @@ public class PlayerMove2 : MonoBehaviour
     [SerializeField] AudioSource playerAudioSource;
     SoundPlayer soundPlayer = new SoundPlayer();
 
+    //Animation
+    private Animator playerAnimator;
 
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
+        playerAnimator = GetComponent<Animator>();
+
+        jumpingStrategy = new Default2Jump();
     }
 
     void Update()
@@ -171,7 +176,12 @@ public class PlayerMove2 : MonoBehaviour
         }
         #endregion
 
+        #region Passing to Animator
 
+        playerAnimator.SetFloat("Speed", Mathf.Abs(playerRB.velocity.x));
+        playerAnimator.SetBool("isGrounded", isGrounded);
+
+        #endregion
     }
 
     private void GroundedJump()

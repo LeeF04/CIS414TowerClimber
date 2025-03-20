@@ -467,6 +467,7 @@ GameObject:
   - component: {fileID: 438430539}
   - component: {fileID: 438430538}
   - component: {fileID: 438430543}
+  - component: {fileID: 438430544}
   m_Layer: 0
   m_Name: CatPlayer
   m_TagString: Player
@@ -733,6 +734,27 @@ MonoBehaviour:
   HoverJumpAudioClip: {fileID: 8300000, guid: 64f1672153d6ea74d9801a1c7c84accd, type: 3}
   hoverDuration: 0.5
   playerAudioSource: {fileID: 438430539}
+--- !u!95 &438430544
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438430532}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 08cc7054c83c354429a7773c6f685d49, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1001 &688278706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1166,6 +1188,7 @@ GameObject:
   - component: {fileID: 1897088764}
   - component: {fileID: 1897088766}
   - component: {fileID: 1897088765}
+  - component: {fileID: 1897088767}
   m_Layer: 0
   m_Name: WaterHitBox
   m_TagString: Water
@@ -1285,6 +1308,33 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &1897088767
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1897088763}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_Interpolate: 0
+  m_SleepingMode: 1
+  m_CollisionDetection: 1
+  m_Constraints: 0
 --- !u!4 &1913185905 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 449878, guid: b24139e8b37ec455ba25cca6ad1fde41, type: 3}
