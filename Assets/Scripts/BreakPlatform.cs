@@ -12,10 +12,10 @@ public class BreakPlatform : MonoBehaviour
     //Michael's change
     [SerializeField] private float platformInactiveTimer = 5.0f;
 
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if(collision.gameObject.CompareTag("Water"))
+        if(collision.gameObject.CompareTag("Player"))
         {
             Debug.Log("Entered Collision!");
             Invoke("SetInactive", platformInactiveTimer);
