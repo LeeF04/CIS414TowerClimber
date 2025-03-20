@@ -1122,6 +1122,7 @@ MonoBehaviour:
   - {fileID: 2029561494358740832, guid: a66211b9c33be984e93bd594481ffb49, type: 3}
   - {fileID: 3926632248734320521, guid: 9d3c712f4a4c676439111069fe92386b, type: 3}
   - {fileID: 8943450639736942002, guid: a808b67e6a8957748bc15987885d62b9, type: 3}
+  towerHeight: 50
 --- !u!4 &1643227318
 Transform:
   m_ObjectHideFlags: 0
@@ -1424,7 +1425,7 @@ Rigidbody2D:
     m_Bits: 0
   m_Interpolate: 0
   m_SleepingMode: 1
-  m_CollisionDetection: 1
+  m_CollisionDetection: 0
   m_Constraints: 0
 --- !u!4 &1913185905 stripped
 Transform:

@@ -10,13 +10,16 @@ public class WaterLevelRise : MonoBehaviour
     private Transform playerPosition;
     private Transform waterLevel;
 
-    private float waterLevelMaximum = 485;
+    private float waterLevelMaximum;
+
+    private TowerManager towerManager = new TowerManager();
 
     private void Start()
     {
         waterLevel = GetComponent<Transform>();
         playerObject = GameObject.Find("CatPlayer");
         playerPosition = playerObject.transform;
+        waterLevelMaximum = (towerManager.towerHeight*5)-15;
     }
 
     void FixedUpdate()
@@ -34,6 +37,10 @@ public class WaterLevelRise : MonoBehaviour
             {
                 waterLevel.position = new Vector3(10, (waterLevel.position.y) + 0.02f, -0.25f);
             }
+        }
+        else
+        {
+            Debug.Log("Water Level Maximum Reached, Y: " + waterLevelMaximum);
         }
 
     }
