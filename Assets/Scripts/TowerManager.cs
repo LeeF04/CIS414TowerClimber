@@ -9,6 +9,7 @@ public class TowerManager : MonoBehaviour
 {
     // Variables
     [SerializeField] private GameObject[] towerPlatforms;
+    [SerializeField] private EnemyFactory enemyFactory; // Reference to factory 
 
     //Edit by Michael, used to calculate maximum water level
     public int towerHeight = 50; //In platforms
@@ -26,6 +27,14 @@ public class TowerManager : MonoBehaviour
             randomNumber = Random.Range(0, towerPlatforms.Length);
 
             GameObject t = Instantiate(towerPlatforms[randomNumber], traveller.transform.position, traveller.transform.rotation);
+
+
+            if (enemyFactory != null && Random.value > 0.5f) //Written by Bryan Castaneda - Spawn enemy prefabs from factory
+            {
+                Vector3 enemySpawnPos = t.transform.position + Vector3.up * 1.5f; 
+                enemyFactory.CreateEnemy(enemySpawnPos);
+            }
+
             traveller.transform.Translate(Vector3.up * 5);
         }
     }
