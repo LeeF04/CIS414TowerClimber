@@ -26,6 +26,8 @@ public class PlayerMove2 : MonoBehaviour
     //private int AirJumpType = 1;
     private int AirJumpCount = 0;
 
+    private GameObject lastPlatform; // Bryan Castaneda - Stores the last platform the player landed on this is for score counter
+
     // Grounded Jump
     [SerializeField] private AudioClip GroundedJumpAudioClip;
     [SerializeField] private float GroundedJumpSpeed = 10.0f;
@@ -251,7 +253,16 @@ public class PlayerMove2 : MonoBehaviour
             isGrounded = true;
             AirJumpCount = 0;
             Debug.Log("Enter Platform");
-        }
+            
+            //Bryan Castaneda - Only increase if it is a different platform
+            if (collision.gameObject != lastPlatform)
+            {
+                ScoreManager.instance.IncreaseScore(); // Bryan Castaneda - Increase score of platforms jumped
+            }
+
+            lastPlatform = collision.gameObject; // Update last landed platform
+            }
+            
     }
 
     private void OnCollisionExit2D(Collision2D collision)

@@ -10,10 +10,7 @@ public class Enemy_Patrol : MonoBehaviour
     public float rayDist;
     private bool movingRight;
     public Transform groundDetect;
-    // Start is called before the first frame update
- 
-
-    // Update is called once per frame
+    
     void Update()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
@@ -40,7 +37,7 @@ public class Enemy_Patrol : MonoBehaviour
         if (collision.gameObject.CompareTag("Player")) 
         {
             
-            SceneManager.LoadScene(3); // Load game over screen
+            SceneManager.LoadScene(2); // Load game over screen
         }
     }
 }

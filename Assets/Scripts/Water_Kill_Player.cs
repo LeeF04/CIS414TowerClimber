@@ -9,11 +9,8 @@ public class Water_Kill_Player : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            SceneManager.LoadScene(3); // Load the Game Over scene
+            SceneManager.LoadScene(2); // Load the Game Over scene
         }
-        else
-        {
-            Debug.Log("Something went wrong with loading Game Over screen");
-        }
+      
     }
 }

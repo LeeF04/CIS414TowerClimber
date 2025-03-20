@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Platform
   - Water
+  - Main_platform
   layers:
   - Default
   - TransparentFX
