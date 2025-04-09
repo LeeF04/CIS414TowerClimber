@@ -590,6 +590,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shadowSpeed: 2
+  actionDelay: 0.5
 --- !u!4 &159931533 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 449878, guid: b24139e8b37ec455ba25cca6ad1fde41, type: 3}

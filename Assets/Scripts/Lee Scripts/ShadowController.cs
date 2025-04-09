@@ -9,9 +9,12 @@ using UnityEngine.UIElements;
 public class ShadowController : MonoBehaviour
 {
     [SerializeField] private float shadowSpeed = 5.0f;
-    private float actionDelay = 1.0f;
+    [SerializeField] private float actionDelay = 1.0f;
     private List<ICommand> commandQueue = new List<ICommand>();
     private Rigidbody2D shadowRb;
+
+    [SerializeField] private ParticleSystem teleportPart;
+    private ParticleSystem teleportPartInstance;
 
     // Methods
     private void Start()
@@ -37,11 +40,12 @@ public class ShadowController : MonoBehaviour
     public void Move(Vector3 aDirect)
     {
         transform.position = transform.position + aDirect * shadowSpeed;
-        
     }
     private void ExecuteCommand(ICommand aCommand)
     {
         StartCoroutine(ExecuteDelay(aCommand, actionDelay));
+        // Spawns the particles.
+        SpawnTeleportParticles();
     }
     private IEnumerator ExecuteDelay(ICommand aCommand, float delay)
     {
@@ -56,4 +60,8 @@ public class ShadowController : MonoBehaviour
         aCommand.Execute();
         commandQueue.Add(aCommand);
     }*/
+    private void SpawnTeleportParticles()
+    {
+        teleportPartInstance = Instantiate(teleportPart, transform.position, Quaternion.identity);
+    }
 }
