@@ -1702,7 +1702,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d171a76843601c48b6cde0a7be945b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axeEnemyPrefab: {fileID: 5112145708826773363, guid: 34e85fea7b0b1154cad33e1a3028c023, type: 3}
+  axeEnemyPrefab: {fileID: 6068142555835844565, guid: 8bb25e6385749f44fbe030a0d6ff6e6a, type: 3}
   macePrefab: {fileID: 6068142555835844565, guid: 8bb25e6385749f44fbe030a0d6ff6e6a, type: 3}
   sawPrefab: {fileID: 8020383238416580482, guid: 612e121478d0b7e4a9799a4e3faefb6b, type: 3}
 --- !u!4 &1573810127

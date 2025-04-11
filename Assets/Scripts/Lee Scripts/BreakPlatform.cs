@@ -10,7 +10,7 @@ using UnityEngine;
 public class BreakPlatform : MonoBehaviour
 {
     //Michael's change
-    [SerializeField] private float platformInactiveTimer = 5.0f;
+    [SerializeField] private float platformInactiveTimer = 15.0f;
 
     private void OnTriggerEnter2D(Collider2D collision)
     {

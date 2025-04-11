@@ -26,6 +26,8 @@ public class PlayerMoveDeco : MonoBehaviour
     private bool isGrounded = true;
     private int AirJumpCount = 0;
 
+    private IMoveState currentMoveState;
+
     private GameObject lastPlatform; // Bryan Castaneda - Stores the last platform the player landed on this is for score counter
 
     // Grounded Jump
@@ -62,6 +64,8 @@ public class PlayerMoveDeco : MonoBehaviour
         playerRB = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
 
+        currentMoveState = new GroundedState();
+
     }
 
     void Update()
@@ -96,7 +100,7 @@ public class PlayerMoveDeco : MonoBehaviour
         #region Jumping
         if (Input.GetButtonDown("Jump"))
         {
-            if (isGrounded)
+            if (currentMoveState.StateType() == 1)
             {
                 playerRB.velocity = new Vector2(playerRB.velocity.x, GroundJumpConfig.JumpSpeed);
 
@@ -114,7 +118,7 @@ public class PlayerMoveDeco : MonoBehaviour
                     playerPosition.transform.position = new Vector3(-playerPosition.transform.position.x, playerPosition.transform.position.y + GroundJumpConfig.JumpSpeed, playerPosition.transform.position.z);
                 }
             }
-            else
+            else if (currentMoveState.StateType() == 2)
             {
                 if (airJumpConfig != null)
                 { 
@@ -128,7 +132,6 @@ public class PlayerMoveDeco : MonoBehaviour
                         if (airJumpConfig.HoverDuration > 0)
                         {
                             playerRB.gravityScale = 0;
-                            Debug.Log(airJumpConfig.HoverDuration);
                             StartCoroutine(ResetGravityToDefault(airJumpConfig.HoverDuration));
                         }
 
@@ -144,6 +147,10 @@ public class PlayerMoveDeco : MonoBehaviour
                     Debug.Log("airJumpConfig == null");
                 }
                 
+            }
+            else
+            {
+                Debug.Log("Not in the air or on the ground");
             }
         }
         #endregion
@@ -212,14 +219,32 @@ public class PlayerMoveDeco : MonoBehaviour
         transform.localScale = scale;
     }
 
+
+    public void ChangeMoveState(IMoveState newState)
+    {
+        if (currentMoveState != null)
+        {
+            currentMoveState.Exit(this);
+        }
+
+        currentMoveState = newState;
+        currentMoveState.Enter(this);
+    }
+
+
+
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Main_platform"))
         {
+            /*
             isGrounded = true;
             AirJumpCount = 0;
             Debug.Log("Enter Platform");
-            
+            */
+            ChangeMoveState(new GroundedState());
+            AirJumpCount = 0;
+
             //Bryan Castaneda - Only increase if it is a different platform
             if (collision.gameObject != lastPlatform)
             {
@@ -235,8 +260,10 @@ public class PlayerMoveDeco : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Main_platform"))
         {
-            isGrounded = false;
-            Debug.Log("Exit Platform");
+            //isGrounded = false;
+
+            ChangeMoveState(new AirState());
+
         }
     }
 }
