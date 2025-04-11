@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: debcbbb03ca1a1049935d6a2ba6965a7, type: 3}
+  m_Name: DefaultJump
+  m_EditorClassIdentifier: 
+  jumpSpeed: 10
+  jumpCountMaximum: 1
+  jumpType: 1
+  hoverDuration: 0
+  teleport: 0
+  jumpAudio: {fileID: 8300000, guid: 6b49c26b106d92a4d977d8454d734c3c, type: 3}
+  JumpName: Default Double Jump
+  JumpDescription: Allows a character a single strong midair jump

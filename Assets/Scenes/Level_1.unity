@@ -138,7 +138,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &29868641
 Transform:
   m_ObjectHideFlags: 0
@@ -374,7 +374,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!95 &142540353
 Animator:
   serializedVersion: 5
@@ -932,6 +932,7 @@ GameObject:
   - component: {fileID: 438430538}
   - component: {fileID: 438430543}
   - component: {fileID: 438430544}
+  - component: {fileID: 438430545}
   m_Layer: 0
   m_Name: CatPlayer
   m_TagString: Player
@@ -1183,7 +1184,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 438430532}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc48a52228c816d4dac86dff1ca7000d, type: 3}
   m_Name: 
@@ -1219,6 +1220,26 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &438430545
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 438430532}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1435c80230cf91140902957d81dc82bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 5
+  defaultPlayerGravityScale: 1.5
+  GroundJumpConfig: {fileID: 11400000, guid: 2f0aa28954a07ac4db7c39033e1f967c, type: 2}
+  DoubleJumpConfig: {fileID: 11400000, guid: d3067ff13c748f3469add5b056df080f, type: 2}
+  TeleportJumpConfig: {fileID: 11400000, guid: 1a3fdd12a5fef36498bde9d3e8f88796, type: 2}
+  TripleJumpConfig: {fileID: 11400000, guid: c0b652e1fc4b5e945a5786f363403688, type: 2}
+  HoverJumpConfig: {fileID: 11400000, guid: 5222fe5b0a1b7404593de8dead39f160, type: 2}
+  playerAudioSource: {fileID: 438430539}
 --- !u!1001 &688278706
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1769,7 +1790,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2d171a76843601c48b6cde0a7be945b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  axeEnemyPrefab: {fileID: 5112145708826773363, guid: 34e85fea7b0b1154cad33e1a3028c023, type: 3}
+  axeEnemyPrefab: {fileID: 6068142555835844565, guid: 8bb25e6385749f44fbe030a0d6ff6e6a, type: 3}
   macePrefab: {fileID: 6068142555835844565, guid: 8bb25e6385749f44fbe030a0d6ff6e6a, type: 3}
   sawPrefab: {fileID: 8020383238416580482, guid: 612e121478d0b7e4a9799a4e3faefb6b, type: 3}
 --- !u!4 &1573810127
