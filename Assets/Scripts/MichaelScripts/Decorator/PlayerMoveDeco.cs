@@ -160,28 +160,33 @@ public class PlayerMoveDeco : MonoBehaviour
         if (Input.GetKeyDown("0"))
         {
             airJumpConfig = null;
+            Debug.Log("Null Jump Selected");
         }
 
         if (Input.GetKeyDown("1"))
         {
             airJumpConfig = DoubleJumpConfig;
+            Debug.Log("Double Jump Selected");
         }
 
         if (Input.GetKeyDown("2"))
         {
             airJumpConfig = TeleportJumpConfig;
+            Debug.Log("Teleport Jump Selected");
         }
 
         if (Input.GetKeyDown("3"))
         {
             airJumpConfig = TripleJumpConfig;
+            Debug.Log("Triple Jump Selected");
         }
 
         if (Input.GetKeyDown("4"))
         {
             airJumpConfig = HoverJumpConfig;
+            Debug.Log("Glide Jump Selected");
         }
-        
+
 
         if (Input.GetKeyDown("`"))
         {
