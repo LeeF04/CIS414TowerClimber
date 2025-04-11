@@ -10,7 +10,9 @@ public class Enemy_Patrol : MonoBehaviour
     public float rayDist;
     private bool movingRight;
     public Transform groundDetect;
-    
+
+    private GameEventSubject eventSubject; //for observer pattern
+
     void Update()
     {
         transform.Translate(Vector2.right * speed * Time.deltaTime);
@@ -32,12 +34,20 @@ public class Enemy_Patrol : MonoBehaviour
 
     }
 
-    private void OnCollisionEnter2D(Collision2D collision) //Trigger game over if enemy collides with player
+    void Start()
     {
-        if (collision.gameObject.CompareTag("Player")) 
+        eventSubject = FindObjectOfType<GameEventSubject>();
+    }
+
+
+
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
         {
-            
-            SceneManager.LoadScene(2); // Load game over screen
+            eventSubject?.NotifyObservers("GameOver");
         }
     }
+
 }
