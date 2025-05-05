@@ -55,12 +55,19 @@ public class PlayerMove2 : MonoBehaviour
     // Keys
     private KeyCode KeyFromKeyPressed = 0;
 
+    // SaveSystem - Lee F.
+    private ISaveSystem saveSystem;
+    private bool isLoading = false;
+
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
         playerAnimator = GetComponent<Animator>();
 
         jumpingStrategy = new Default2Jump();
+
+        // Adding in SaveSystem - Lee F.
+        saveSystem = new CSVSaveAdapter();
     }
 
     void Update()
@@ -205,6 +212,16 @@ public class PlayerMove2 : MonoBehaviour
         playerAnimator.SetBool("isGrounded", isGrounded);
 
         #endregion
+
+        // Keys For Saving - Lee F.
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SaveData();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadData();
+        }
     }
 
     bool KeyPressed(KeyCode[] keys)
@@ -272,5 +289,23 @@ public class PlayerMove2 : MonoBehaviour
             isGrounded = false;
             Debug.Log("Exit Platform");
         }
+    }
+    void SaveData()
+    {
+        Debug.Log("Saving...");
+
+        PlayerData data = new PlayerData
+        {
+            position = transform.position
+        };
+
+        saveSystem.SavePlayerData(data);
+    }
+    void LoadData()
+    {
+        isLoading = true;
+        PlayerData data = saveSystem.LoadPlayerData();
+        transform.position = data.position;
+        isLoading = false;
     }
 }

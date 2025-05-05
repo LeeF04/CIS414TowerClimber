@@ -59,6 +59,10 @@ public class PlayerMoveDeco : MonoBehaviour
     // Active Jump Configs
     private JumpConfig airJumpConfig = null;
 
+    // SaveSystem - Lee F.
+    private ISaveSystem saveSystem;
+    private bool isLoading = false;
+
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
@@ -66,6 +70,8 @@ public class PlayerMoveDeco : MonoBehaviour
 
         currentMoveState = new GroundedState();
 
+        // Adding SaveSystem - Lee F.
+        saveSystem = new CSVSaveAdapter();
     }
 
     void Update()
@@ -200,6 +206,16 @@ public class PlayerMoveDeco : MonoBehaviour
         playerAnimator.SetBool("isGrounded", isGrounded);
 
         #endregion
+
+        // SaveSystem Keys - Lee F.
+        if (Input.GetKeyDown(KeyCode.P))
+        {
+            SaveData();
+        }
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            LoadData();
+        }
     }
 
     /*
@@ -270,5 +286,25 @@ public class PlayerMoveDeco : MonoBehaviour
             ChangeMoveState(new AirState());
 
         }
+    }
+
+    // SaveSystem Methods - Lee F.
+    void SaveData()
+    {
+        Debug.Log("Saving...");
+
+        PlayerData data = new PlayerData
+        {
+            position = transform.position
+        };
+
+        saveSystem.SavePlayerData(data);
+    }
+    void LoadData()
+    {
+        isLoading = true;
+        PlayerData data = saveSystem.LoadPlayerData();
+        transform.position = data.position;
+        isLoading = false;
     }
 }
