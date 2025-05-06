@@ -63,6 +63,9 @@ public class PlayerMoveDeco : MonoBehaviour
     private ISaveSystem saveSystem;
     private bool isLoading = false;
 
+    //Jump Type UI
+    private UI_JumpTypeManager jumpTypeManager;// = new UI_JumpTypeManager();
+
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
@@ -72,6 +75,8 @@ public class PlayerMoveDeco : MonoBehaviour
 
         // Adding SaveSystem - Lee F.
         saveSystem = new CSVSaveAdapter();
+
+        jumpTypeManager = FindObjectOfType<UI_JumpTypeManager>();
     }
 
     void Update()
@@ -166,31 +171,41 @@ public class PlayerMoveDeco : MonoBehaviour
         if (Input.GetKeyDown("0"))
         {
             airJumpConfig = null;
-            Debug.Log("Null Jump Selected");
         }
 
         if (Input.GetKeyDown("1"))
         {
             airJumpConfig = DoubleJumpConfig;
-            Debug.Log("Double Jump Selected");
         }
 
         if (Input.GetKeyDown("2"))
         {
             airJumpConfig = TeleportJumpConfig;
-            Debug.Log("Teleport Jump Selected");
         }
 
         if (Input.GetKeyDown("3"))
         {
             airJumpConfig = TripleJumpConfig;
-            Debug.Log("Triple Jump Selected");
         }
 
         if (Input.GetKeyDown("4"))
         {
             airJumpConfig = HoverJumpConfig;
-            Debug.Log("Glide Jump Selected");
+        }
+
+        if (Input.GetKeyUp("0") || Input.GetKeyUp("1") || Input.GetKeyUp("2") || Input.GetKeyUp("3") || Input.GetKeyUp("4"))
+        {
+            if (airJumpConfig != null)
+            {
+                Debug.Log(airJumpConfig.JumpName + " Jump Selected");
+                jumpTypeManager.UpdateMoveTypeText(airJumpConfig.JumpName);
+            }
+            else
+            {
+                Debug.Log("No Jump Selected");
+                jumpTypeManager.UpdateMoveTypeText("None");
+            }
+
         }
 
 
@@ -258,8 +273,9 @@ public class PlayerMoveDeco : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Main_platform"))
         {
-            /*
+            
             isGrounded = true;
+            /*
             AirJumpCount = 0;
             Debug.Log("Enter Platform");
             */
@@ -281,7 +297,7 @@ public class PlayerMoveDeco : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Main_platform"))
         {
-            //isGrounded = false;
+            isGrounded = false;
 
             ChangeMoveState(new AirState());
 

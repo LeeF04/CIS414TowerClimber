@@ -18,5 +18,5 @@ MonoBehaviour:
   hoverDuration: 0
   teleport: 0
   jumpAudio: {fileID: 8300000, guid: 9ba6935c904e11b4cac7e4268933f09a, type: 3}
-  JumpName: Normal Jump
-  JumpDescription: Allows for jumping on the ground
+  jumpName: Grounded
+  jumpDescription: Allows the player a single strong grounded jump.

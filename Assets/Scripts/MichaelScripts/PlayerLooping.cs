@@ -22,12 +22,12 @@ public class PlayerLooping : MonoBehaviour
             if (playerPosition.transform.position.x > viewBoundaryX)
             {
                 playerPosition.transform.position = new Vector3(-viewBoundaryX, playerPosition.transform.position.y, playerPosition.transform.position.z);
-                Debug.Log("Player looped from right -> left");
+                //Debug.Log("Player looped from right -> left");
             }
             else if (playerPosition.transform.position.x < -viewBoundaryX)
             {
                 playerPosition.transform.position = new Vector3(viewBoundaryX, playerPosition.transform.position.y, playerPosition.transform.position.z);
-                Debug.Log("Player looped from right <- left");
+                //Debug.Log("Player looped from right <- left");
             }
 
         }

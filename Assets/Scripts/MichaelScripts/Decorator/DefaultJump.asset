@@ -18,5 +18,5 @@ MonoBehaviour:
   hoverDuration: 0
   teleport: 0
   jumpAudio: {fileID: 8300000, guid: 6b49c26b106d92a4d977d8454d734c3c, type: 3}
-  JumpName: Default Double Jump
-  JumpDescription: Allows a character a single strong midair jump
+  jumpName: Double
+  jumpDescription: Allows the player a single strong midair jump.

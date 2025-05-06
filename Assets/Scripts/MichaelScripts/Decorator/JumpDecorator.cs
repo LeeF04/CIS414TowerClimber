@@ -32,6 +32,14 @@ public class JumpDecorator : IJumpDecorator
     {
         get { return config.JumpAudio; }
     }
+    public string JumpName
+    {
+        get { return config.JumpName; }
+    }
+    public string JumpDescription
+    {
+        get { return config.JumpDescription; }
+    }
 
 
     public JumpDecorator(JumpConfig aJumpConfig)

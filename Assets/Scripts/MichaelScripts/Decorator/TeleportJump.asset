@@ -18,6 +18,6 @@ MonoBehaviour:
   hoverDuration: 0
   teleport: 1
   jumpAudio: {fileID: 8300000, guid: 3190f5940754ee74c91ac7020a68bba9, type: 3}
-  JumpName: Mirror Teleport Jump
-  JumpDescription: Allows the character to teleport to an X mirriored position above
-    their current Y
+  jumpName: Teleport
+  jumpDescription: Allows the player to teleport a short distance upwards across
+    the screen.

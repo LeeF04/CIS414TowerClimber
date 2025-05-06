@@ -12,4 +12,6 @@ public interface IJumpDecorator
     float HoverDuration {get;}
     bool Teleport {get;}
     AudioClip JumpAudio { get;}
+    string JumpName { get;}
+    string JumpDescription { get;}
 }

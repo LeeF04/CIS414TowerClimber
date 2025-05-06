@@ -59,6 +59,9 @@ public class PlayerMove2 : MonoBehaviour
     private ISaveSystem saveSystem;
     private bool isLoading = false;
 
+    //Jump Type UI
+    private UI_JumpTypeManager jumpTypeManager;// = new UI_JumpTypeManager();
+
     void Start()
     {
         playerRB = GetComponent<Rigidbody2D>();
@@ -68,6 +71,8 @@ public class PlayerMove2 : MonoBehaviour
 
         // Adding in SaveSystem - Lee F.
         saveSystem = new CSVSaveAdapter();
+
+        jumpTypeManager = FindObjectOfType<UI_JumpTypeManager>();
     }
 
     void Update()
@@ -165,6 +170,39 @@ public class PlayerMove2 : MonoBehaviour
             Debug.Log("Specified key has been pressed.");
             IJumpingStrategy newStrategy = JumpingStrategyFactory.GetStrategy(KeyFromKeyPressed);
             ChangeMovementStrategy(newStrategy);
+
+            if (newStrategy != null)
+            {
+                switch (jumpingStrategy.AirJumpType())
+                {
+                    case 1:
+                        jumpTypeManager.UpdateMoveTypeText("Double"); 
+                        break;
+
+                    case 2:
+                        jumpTypeManager.UpdateMoveTypeText("Teleport");
+                        break;
+
+                    case 3:
+                        jumpTypeManager.UpdateMoveTypeText("Triple");
+                        break;
+
+                    case 4:
+                        jumpTypeManager.UpdateMoveTypeText("Glide");
+                        break;
+
+                    default:
+                        jumpTypeManager.UpdateMoveTypeText("Double");
+                        Debug.Log("Used Default AirJumpType in switch case statement");
+                        break;
+                }
+            }
+            else
+            {
+                jumpTypeManager.UpdateMoveTypeText("None");
+                Debug.Log("Jump Strategy is NULL");
+            }
+            
         }
 
 

@@ -18,5 +18,5 @@ MonoBehaviour:
   hoverDuration: 0
   teleport: 0
   jumpAudio: {fileID: 8300000, guid: 5efa41faebe12634db9ffad659cb294c, type: 3}
-  JumpName: Triple Jump
-  JumpDescription: Allows the character to make two moderate mid air jumps
+  jumpName: Triple
+  jumpDescription: Allows the player wo weak midair jumps.

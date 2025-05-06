@@ -18,6 +18,5 @@ MonoBehaviour:
   hoverDuration: 0.8
   teleport: 0
   jumpAudio: {fileID: 8300000, guid: 64f1672153d6ea74d9801a1c7c84accd, type: 3}
-  JumpName: Glide Jump
-  JumpDescription: This jump provides a small upward lift but disables gravity on
-    the character allowing them to glide through the air for a brief time
+  jumpName: Glide
+  jumpDescription: Allows the player to glide through the air for a brief time.

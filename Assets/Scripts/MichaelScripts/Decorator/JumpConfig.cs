@@ -7,7 +7,6 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "NewJumpConfig", menuName = "Jump/Config", order = 1)]
 public class JumpConfig : ScriptableObject, IJumpDecorator
 {
-    //These stat ranges apply to the base weapon
 
     [SerializeField]
     private float jumpSpeed;
@@ -27,8 +26,8 @@ public class JumpConfig : ScriptableObject, IJumpDecorator
     [SerializeField]
     private AudioClip jumpAudio;
 
-    [SerializeField] private string JumpName = "";
-    [SerializeField] private string JumpDescription = "";
+    [SerializeField] private string jumpName = "";
+    [SerializeField] private string jumpDescription = "";
 
     public float JumpSpeed
     {
@@ -57,6 +56,16 @@ public class JumpConfig : ScriptableObject, IJumpDecorator
     public AudioClip JumpAudio
     {
         get { return jumpAudio; }
+    }
+
+    public string JumpName
+    {
+        get { return jumpName; }
+    }
+
+    public string JumpDescription
+    {
+        get { return jumpDescription; }
     }
 
 }

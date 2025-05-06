@@ -11,6 +11,7 @@ public class WaterLevelRise : MonoBehaviour
     private Transform waterLevel;
 
     private float waterLevelMaximum;
+    private bool waterAtMaximum = false;
 
     private TowerManager towerManager = new TowerManager();
 
@@ -38,9 +39,10 @@ public class WaterLevelRise : MonoBehaviour
                 waterLevel.position = new Vector3(10, (waterLevel.position.y) + 0.02f, -0.25f);
             }
         }
-        else
+        else if (!waterAtMaximum)
         {
             Debug.Log("Water Level Maximum Reached, Y: " + waterLevelMaximum);
+            waterAtMaximum = true;
         }
 
     }
