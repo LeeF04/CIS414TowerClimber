@@ -12,9 +12,10 @@ public class TowerManager : MonoBehaviour
     [SerializeField] private EnemyFactory enemyFactory; // Reference to factory 
 
     [SerializeField] private GameObject lastPlatform;
+    [SerializeField] private GameObject winProxy;
 
     //Edit by Michael, used to calculate maximum water level
-    public int towerHeight = 25; //In platforms
+    public int towerHeight = 10; //In platforms
 
     private GameObject traveller;
     
@@ -40,8 +41,8 @@ public class TowerManager : MonoBehaviour
             traveller.transform.Translate(Vector3.up * 5);
         }
 
-        Instantiate(lastPlatform, traveller.transform.position, traveller.transform.rotation);
-
+        Instantiate(lastPlatform, traveller.transform.position + new Vector3(-1, 0, 0), traveller.transform.rotation);
+        Instantiate(winProxy, traveller.transform.position, traveller.transform.rotation);
     }
 
 }
