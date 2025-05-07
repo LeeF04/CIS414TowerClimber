@@ -4,27 +4,24 @@ using TMPro;
 
 public class ScoreManager : MonoBehaviour, ISubject
 {
-    public static ScoreManager instance;
+    private static ScoreManager _instance; //Singleton pattern
+    public static ScoreManager Instance => _instance; //Singleton pattern
 
     public TextMeshProUGUI jumpScoreText;
     private int jumpScore = 0;
-
     private List<IObserver> observers = new List<IObserver>();
 
     private void Awake()
     {
-        if (instance == null)
-        {
-            instance = this;
-            DontDestroyOnLoad(gameObject);
-        }
-        else
+        if (_instance != null && _instance != this)
         {
             Destroy(gameObject);
             return;
         }
 
-        ResetScore(); // Ensure score is 0 at start
+        _instance = this;
+        DontDestroyOnLoad(gameObject);
+        ResetScore();
     }
 
     void Start()
@@ -60,7 +57,7 @@ public class ScoreManager : MonoBehaviour, ISubject
         }
     }
 
-    // Observer Pattern 
+    // Observer Pattern
     public void AddObserver(IObserver observer)
     {
         if (!observers.Contains(observer))

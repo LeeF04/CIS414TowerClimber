@@ -11,6 +11,8 @@ public class PlayerMoveDeco : MonoBehaviour
     // Moving
     [SerializeField] private float moveSpeed = 5.0f;
     private float direction = 0.0f;
+    private float scoreCooldown = 0.1f; // time buffer for proper score increase
+    private float lastScoreTime = -1f;
 
     // Player X Flipping
     private bool isFlipped = false;
@@ -29,6 +31,7 @@ public class PlayerMoveDeco : MonoBehaviour
     private IMoveState currentMoveState;
 
     private GameObject lastPlatform; // Bryan Castaneda - Stores the last platform the player landed on this is for score counter
+    private bool platformScored = false;
 
     // Grounded Jump
 
@@ -283,9 +286,10 @@ public class PlayerMoveDeco : MonoBehaviour
             AirJumpCount = 0;
 
             //Bryan Castaneda - Only increase if it is a different platform
-            if (collision.gameObject != lastPlatform)
+            if (collision.gameObject != lastPlatform || !platformScored)
             {
-                ScoreManager.instance.IncreaseScore(); // Bryan Castaneda - Increase score of platforms jumped
+                ScoreManager.Instance.IncreaseScore();
+                platformScored = true;
             }
 
             lastPlatform = collision.gameObject; // Update last landed platform
@@ -298,6 +302,7 @@ public class PlayerMoveDeco : MonoBehaviour
         if (collision.gameObject.CompareTag("Platform") || collision.gameObject.CompareTag("Main_platform"))
         {
             isGrounded = false;
+            platformScored = false;
 
             ChangeMoveState(new AirState());
 

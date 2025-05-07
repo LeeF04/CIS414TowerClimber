@@ -11,6 +11,7 @@ public class PlayerMove2 : MonoBehaviour
     [SerializeField] private float moveSpeed = 5.0f;
     private float direction = 0.0f;
 
+
     // Player X Flipping
     private bool isFlipped = false;
 
@@ -27,6 +28,7 @@ public class PlayerMove2 : MonoBehaviour
     private int AirJumpCount = 0;
 
     private GameObject lastPlatform; // Bryan Castaneda - Stores the last platform the player landed on this is for score counter
+    private bool platformScored = false;
 
     // Grounded Jump
     [SerializeField] private AudioClip GroundedJumpAudioClip;
@@ -301,30 +303,32 @@ public class PlayerMove2 : MonoBehaviour
         transform.localScale = scale;
     }
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.gameObject.CompareTag("Platform"))
-        {
-            isGrounded = true;
-            AirJumpCount = 0;
-            Debug.Log("Enter Platform");
-            
-            //Bryan Castaneda - Only increase if it is a different platform
-            if (collision.gameObject != lastPlatform)
-            {
-                ScoreManager.instance.IncreaseScore(); // Bryan Castaneda - Increase score of platforms jumped
-            }
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.CompareTag("Platform"))
+    //    {
+    //        isGrounded = true;
+    //        AirJumpCount = 0;
+    //        Debug.Log("Enter Platform");
 
-            lastPlatform = collision.gameObject; // Update last landed platform
-            }
+    //        //Bryan Castaneda - Only increase if it is a different platform
+    //        if (collision.gameObject != lastPlatform || !platformScored)
+    //        {
+    //            ScoreManager.Instance.IncreaseScore();
+    //            platformScored = true;
+    //        }
+
+    //        lastPlatform = collision.gameObject; // Update last landed platform
+    //        }
             
-    }
+    //}
 
     private void OnCollisionExit2D(Collision2D collision)
     {
         if (collision.gameObject.CompareTag("Platform"))
         {
             isGrounded = false;
+            platformScored = false;
             Debug.Log("Exit Platform");
         }
     }
